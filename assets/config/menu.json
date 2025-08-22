@@ -7,15 +7,21 @@
       "name": "模型",
       "children": [
         { "id": "models-free", "name": "免费模型库", "links": [
-          {"name":"Thingiverse","url":"https://www.thingiverse.com/","desc":"全球最大的3D打印模型分享平台"},
+          {"name":"Thingiverse","url":"https://www.thingiverse.com/","desc":"全球最大3D打印模型分享平台"},
           {"name":"Printables","url":"https://www.printables.com/","desc":"Prusa官方模型库，高质量免费模型"},
           {"name":"MakerWorld","url":"https://makerworld.com/","desc":"Bambu Lab官方模型库，高质量免费模型"},
+          {"name":"Thangs","url":"https://thangs.com/","desc":"3D模型搜索引擎，聚合多平台免费模型"},
+          {"name":"Yeggi","url":"https://www.yeggi.com/","desc":"3D模型搜索引擎，聚合多平台免费模型"},
+          {"name":"Pinshape","url":"https://pinshape.com/","desc":"3D打印模型社区，免费与付费"},
           {"name":"MakerOnline","url":"https://makeronline.com/","desc":"在线3D模型库，支持多种格式下载"}
         ]},
         { "id": "models-paid", "name": "付费/精品", "links": [
-          {"name":"Cults3D","url":"https://cults3d.com/","desc":"专业3D模型市场，设计师作品"},
           {"name":"CGTrader","url":"https://www.cgtrader.com/","desc":"高端3D模型交易平台，游戏影视资源"},
-          {"name":"MyMiniFactory","url":"https://www.myminifactory.com/","desc":"精选3D模型，支持多种格式下载"}
+          {"name":"Sketchfab","url":"https://sketchfab.com/","desc":"高质量3D模型平台，专业设计师作品"},
+          {"name":"MyMiniFactory","url":"https://www.myminifactory.com/","desc":"精选3D模型，支持多种格式下载"},
+          {"name":"Cults3D","url":"https://cults3d.com/","desc":"专业3D模型市场，设计师作品"},
+          {"name":"3DExport","url":"https://3dexport.com/","desc":"高质量3D模型交易平台"},
+          {"name":"Pixup3D","url":"https://pixup3d.com/","desc":"3D模型分享平台，免费和付费精品模型"}
         ]},
         { "id": "models-calibration", "name": "校准与测试件", "links": [
           {"name":"Benchy","url":"https://www.3dbenchy.com/","desc":"经典3D打印测试模型，校准必备"}
@@ -31,7 +37,8 @@
         {"id":"community-wiki","name":"厂商Wiki","links":[
           {"name":"拓竹科技Wiki","url":"https://wiki.bambulab.com/zh/home","desc":"Bambu Lab官方Wiki，详细使用教程"},
           {"name":"Anycubic Wiki","url":"https://wiki.anycubic.com/zh/home","desc":"Anycubic官方Wiki，产品使用指南"},
-          {"name":"ELEGOO Wiki","url":"https://wiki.elegoo.com/zh/home","desc":"ELEGOO官方Wiki，技术支持文档"}
+          {"name":"ELEGOO Wiki","url":"https://wiki.elegoo.com/zh/home","desc":"ELEGOO官方Wiki，技术支持文档"},
+          {"name":"3D打印基地站","url":"https://www.3dpbase.com/wiki/","desc":"台湾3D打印知识库"}
         ]}
 
       ]
@@ -40,7 +47,12 @@
       "id": "ai",
       "icon": "bi-cpu",
       "name": "AI工具",
-      "children": []
+      "children": [
+        {"id":"ai-cn","name":"国内大模型","links":[
+          {"name":"腾讯混元","url":"https://hunyuan.tencent.com/","desc":"腾讯通用大模型平台"},
+          {"name":"可灵 Kling","url":"https://klingai.com/","desc":"可灵文生视频模型"}
+        ]}
+      ]
     }
   ]
 }
