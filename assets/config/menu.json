@@ -1,0 +1,68 @@
+{
+  "title": "3D打印导航",
+  "sections": [
+    {
+      "id": "models",
+      "icon": "bi-box",
+      "name": "模型",
+      "children": [
+        { "id": "models-free", "name": "免费模型库", "links": [
+          {"name":"Thingiverse","url":"https://www.thingiverse.com/","desc":"全球最大的3D打印模型分享平台"},
+          {"name":"Printables","url":"https://www.printables.com/","desc":"Prusa官方模型库，高质量免费模型"},
+          {"name":"MyMiniFactory","url":"https://www.myminifactory.com/","desc":"精选3D模型，支持多种格式下载"},
+          {"name":"MakerWorld","url":"https://makerworld.com/","desc":"Bambu Lab官方模型库，高质量免费模型"},
+          {"name":"MakerOnline","url":"https://makeronline.com/","desc":"在线3D模型库，支持多种格式下载"}
+        ]},
+        { "id": "models-paid", "name": "付费/精品", "links": [
+          {"name":"Cults3D","url":"https://cults3d.com/","desc":"专业3D模型市场，设计师作品"},
+          {"name":"CGTrader","url":"https://www.cgtrader.com/","desc":"高端3D模型交易平台，游戏影视资源"}
+        ]},
+        { "id": "models-calibration", "name": "校准与测试件", "links": [
+          {"name":"Benchy","url":"https://www.3dbenchy.com/","desc":"经典3D打印测试模型，校准必备"}
+        ]}
+      ]
+    },
+    {
+      "id": "community",
+      "icon": "bi-book",
+      "name": "教程与社区",
+      "children": [
+        {"id":"community-tutorials","name":"入门与进阶","links":[
+          {"name":"基础设置","url":"#"}, {"name":"材料参数","url":"#"}, {"name":"切片技巧","url":"#"}
+        ]},
+        {"id":"community-wiki","name":"厂商Wiki","links":[
+          {"name":"拓竹科技Wiki","url":"https://wiki.bambulab.com/zh/home","desc":"Bambu Lab官方Wiki，详细使用教程"},
+          {"name":"Anycubic Wiki","url":"https://wiki.anycubic.com/zh/home","desc":"Anycubic官方Wiki，产品使用指南"},
+          {"name":"ELEGOO Wiki","url":"https://wiki.elegoo.com/zh/home","desc":"ELEGOO官方Wiki，技术支持文档"}
+        ]},
+        {"id":"community-troubleshoot","name":"故障排查","links":[
+          {"name":"层移/翘边","url":"#"}, {"name":"拉丝/堵头","url":"#"}
+        ]},
+        {"id":"community-forums","name":"论坛/社群","links":[
+          {"name":"Reddit/Discord","url":"#"}, {"name":"中文社区","url":"#"}
+        ]},
+        {"id":"community-videos","name":"视频频道","links":[
+          {"name":"B站优质UP","url":"#"}, {"name":"YouTube频道","url":"#"}
+        ]}
+      ]
+    },
+    {
+      "id": "ai",
+      "icon": "bi-cpu",
+      "name": "AI工具",
+      "children": [
+        {"id":"ai-text-to-3d","name":"文生3D/图生3D","links":[
+          {"name":"Text-to-3D","url":"#"}, {"name":"Image-to-3D","url":"#"}
+        ]},
+        {"id":"ai-retopo","name":"AI重拓扑/修复","links":[
+          {"name":"网格重拓扑","url":"#"}, {"name":"网格修复","url":"#"}
+        ]},
+        {"id":"ai-texture","name":"纹理/法线生成","links":[
+          {"name":"纹理生成","url":"#"}, {"name":"法线/置换贴图","url":"#"}
+        ]}
+      ]
+    }
+  ]
+}
+
+
