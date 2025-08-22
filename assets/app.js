@@ -245,19 +245,49 @@ function displaySearchResults(results, container) {
 }
 
 function toggleSidebarForDesktop() {
-  // 已取消折叠功能：始终保持展开
-  document.body.classList.remove('sidebar-collapsed');
-  try { localStorage.setItem('sidebar-collapsed', '0'); } catch(e) {}
-  setAllCollapses(true);
+  const body = document.body;
+  const sidebar = document.getElementById('sidebar');
+  const toggleBtn = document.querySelector('button[onclick="toggleSidebarForDesktop()"]');
+  const icon = toggleBtn.querySelector('i');
+  
+  if (body.classList.contains('sidebar-collapsed')) {
+    // 展开侧边栏
+    body.classList.remove('sidebar-collapsed');
+    sidebar.classList.add('d-lg-block');
+    icon.className = 'bi bi-layout-sidebar-inset';
+    toggleBtn.title = '收起侧栏';
+    try { localStorage.setItem('sidebar-collapsed', '0'); } catch(e) {}
+  } else {
+    // 收起侧边栏
+    body.classList.add('sidebar-collapsed');
+    sidebar.classList.remove('d-lg-block');
+    icon.className = 'bi bi-layout-sidebar';
+    toggleBtn.title = '展开侧栏';
+    try { localStorage.setItem('sidebar-collapsed', '1'); } catch(e) {}
+  }
+  
   return false;
 }
 
 function restoreSidebarState() {
-  // 启动时强制取消折叠，并隐藏桌面折叠按钮
-  document.body.classList.remove('sidebar-collapsed');
-  try { localStorage.setItem('sidebar-collapsed', '0'); } catch(e) {}
-  const btn = document.querySelector('button[onclick="toggleSidebarForDesktop()"]');
-  if (btn) btn.style.display = 'none';
+  // 从本地存储恢复侧边栏状态
+  const isCollapsed = localStorage.getItem('sidebar-collapsed') === '1';
+  const body = document.body;
+  const sidebar = document.getElementById('sidebar');
+  const toggleBtn = document.querySelector('button[onclick="toggleSidebarForDesktop()"]');
+  const icon = toggleBtn.querySelector('i');
+  
+  if (isCollapsed) {
+    body.classList.add('sidebar-collapsed');
+    sidebar.classList.remove('d-lg-block');
+    icon.className = 'bi bi-layout-sidebar';
+    toggleBtn.title = '展开侧栏';
+  } else {
+    body.classList.remove('sidebar-collapsed');
+    sidebar.classList.add('d-lg-block');
+    icon.className = 'bi bi-layout-sidebar-inset';
+    toggleBtn.title = '收起侧栏';
+  }
 }
 
 function bindActiveOnScroll() {
@@ -363,6 +393,48 @@ function setAllCollapses(open) {
   });
 }
 
+// 展开/收起全部菜单功能
+function initToggleAllMenus() {
+  const toggleBtn = document.getElementById('toggleAllMenus');
+  if (!toggleBtn) return;
+  
+  // 从本地存储恢复状态
+  const isExpanded = localStorage.getItem('all-menus-expanded') === 'true';
+  updateToggleButtonState(isExpanded);
+  setAllCollapses(isExpanded);
+  
+  toggleBtn.addEventListener('click', () => {
+    const currentState = toggleBtn.classList.contains('expanded');
+    const newState = !currentState;
+    
+    updateToggleButtonState(newState);
+    setAllCollapses(newState);
+    
+    // 保存状态到本地存储
+    try {
+      localStorage.setItem('all-menus-expanded', newState.toString());
+    } catch(e) {}
+  });
+}
+
+function updateToggleButtonState(isExpanded) {
+  const toggleBtn = document.getElementById('toggleAllMenus');
+  if (!toggleBtn) return;
+  
+  const icon = toggleBtn.querySelector('i');
+  const title = toggleBtn.getAttribute('title');
+  
+  if (isExpanded) {
+    toggleBtn.classList.add('expanded');
+    icon.className = 'bi bi-chevron-up';
+    toggleBtn.title = '收起全部菜单';
+  } else {
+    toggleBtn.classList.remove('expanded');
+    icon.className = 'bi bi-chevron-down';
+    toggleBtn.title = '展开全部菜单';
+  }
+}
+
 // 点击子项立即高亮（避免等待滚动进入视口）
 document.addEventListener('click', (e) => {
   const a = e.target.closest('#sidebarMenu .collapse .nav a.nav-link');
@@ -445,6 +517,7 @@ window.addEventListener('DOMContentLoaded', () => {
   loadMenu();
   initThemeToggle();
   initFullscreenSearch();
+  initToggleAllMenus();
 });
 
 

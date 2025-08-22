@@ -35,7 +35,7 @@
       <div class="d-flex align-items-center gap-3">
         <form class="d-none d-sm-flex top-search" role="search" onsubmit="return false;">
           <div class="input-group">
-            <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+            <span class="input-group-text"><i class="bi bi-search"></i></span>
             <input id="search" type="search" class="form-control" placeholder="搜索站点或分类... (Ctrl+K)">
           </div>
         </form>
@@ -49,7 +49,15 @@
   <div class="container-fluid layout d-flex">
     <!-- 侧边栏：移动端可折叠，PC 固定且支持收起 -->
     <nav id="sidebar" class="sidebar collapse d-lg-block bg-gray-100 border-end">
-      <div id="sidebarMenu" class="p-3">
+      <div class="sidebar-header p-2 border-bottom">
+        <div class="d-flex justify-content-between align-items-center">
+          <span class="sidebar-title">导航菜单</span>
+          <button class="btn btn-sm btn-outline-secondary" id="toggleAllMenus" title="展开/收起全部菜单">
+            <i class="bi bi-chevron-down"></i>
+          </button>
+        </div>
+      </div>
+      <div id="sidebarMenu" class="p-2">
         <!-- 由 app.js 渲染侧边菜单 -->
       </div>
     </nav>
@@ -58,7 +66,6 @@
     <main class="flex-grow-1 px-4 content-area">
       <section class="section-title">
         <h1 class="h4 d-flex align-items-center">
-          <i class="bi bi-tag me-2"></i>
           欢迎来到 3D 打印导航
         </h1>
         <p class="text-muted">左侧选择分类即可浏览链接；内容由配置驱动渲染。</p>

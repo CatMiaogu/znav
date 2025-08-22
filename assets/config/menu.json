@@ -9,13 +9,13 @@
         { "id": "models-free", "name": "免费模型库", "links": [
           {"name":"Thingiverse","url":"https://www.thingiverse.com/","desc":"全球最大的3D打印模型分享平台"},
           {"name":"Printables","url":"https://www.printables.com/","desc":"Prusa官方模型库，高质量免费模型"},
-          {"name":"MyMiniFactory","url":"https://www.myminifactory.com/","desc":"精选3D模型，支持多种格式下载"},
           {"name":"MakerWorld","url":"https://makerworld.com/","desc":"Bambu Lab官方模型库，高质量免费模型"},
           {"name":"MakerOnline","url":"https://makeronline.com/","desc":"在线3D模型库，支持多种格式下载"}
         ]},
         { "id": "models-paid", "name": "付费/精品", "links": [
           {"name":"Cults3D","url":"https://cults3d.com/","desc":"专业3D模型市场，设计师作品"},
-          {"name":"CGTrader","url":"https://www.cgtrader.com/","desc":"高端3D模型交易平台，游戏影视资源"}
+          {"name":"CGTrader","url":"https://www.cgtrader.com/","desc":"高端3D模型交易平台，游戏影视资源"},
+          {"name":"MyMiniFactory","url":"https://www.myminifactory.com/","desc":"精选3D模型，支持多种格式下载"}
         ]},
         { "id": "models-calibration", "name": "校准与测试件", "links": [
           {"name":"Benchy","url":"https://www.3dbenchy.com/","desc":"经典3D打印测试模型，校准必备"}
