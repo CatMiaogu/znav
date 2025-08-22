@@ -67,7 +67,7 @@ function renderContent(cfg) {
       const secEl = createEl('section', 'mb-5');
       secEl.id = child.id;
       const title = createEl('h2', 'h5 d-flex align-items-center');
-      title.innerHTML = `<i class="bi bi-tag me-2"></i>${child.name}`;
+      title.textContent = child.name;
       secEl.appendChild(title);
 
       const grid = createEl('div', 'row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3');
@@ -210,21 +210,21 @@ function displaySearchResults(results, container) {
     return;
   }
   
-  container.innerHTML = results.map(result => {
+  container.innerHTML = results.map((result, index) => {
     let clickHandler = '';
     let resultClass = 'search-result-item';
     
     if (result.type === 'section') {
       // 主分类：滚动到页面顶部
-      clickHandler = 'onclick="document.querySelector(\'.content-area\').scrollTo({top: 0, behavior: \'smooth\'}); bootstrap.Modal.getInstance(document.getElementById(\'fullscreenSearchModal\')).hide();"';
+      clickHandler = 'onclick="handleSearchResultClick(this)"';
       resultClass += ' search-result-section';
     } else if (result.type === 'category') {
       // 子分类：滚动到对应分类
-      clickHandler = `onclick="document.getElementById('${result.url.slice(1)}').scrollIntoView({behavior: 'smooth'}); bootstrap.Modal.getInstance(document.getElementById('fullscreenSearchModal')).hide();"`;
+      clickHandler = 'onclick="handleSearchResultClick(this)"';
       resultClass += ' search-result-category';
     } else {
       // 站点：打开新窗口
-      clickHandler = `onclick="window.open('${result.url}', '_blank')"`;
+      clickHandler = 'onclick="handleSearchResultClick(this)"';
       resultClass += ' search-result-site';
     }
     
@@ -233,7 +233,7 @@ function displaySearchResults(results, container) {
                   '<span class="badge bg-success me-2">站点</span>';
     
     return `
-      <div class="${resultClass}" ${clickHandler}>
+      <div class="${resultClass}" ${clickHandler} data-index="${index}" data-type="${result.type}" data-url="${result.url}" data-id="${result.type === 'category' ? result.url.slice(1) : ''}">
         <div class="search-result-title">
           ${badge}${result.name}
         </div>
@@ -242,6 +242,59 @@ function displaySearchResults(results, container) {
       </div>
     `;
   }).join('');
+  
+  // 重置选中状态
+  resetSearchSelection();
+}
+
+// 处理搜索结果点击
+function handleSearchResultClick(element) {
+  const type = element.getAttribute('data-type');
+  const url = element.getAttribute('data-url');
+  const id = element.getAttribute('data-id');
+  
+  if (type === 'section') {
+    document.querySelector('.content-area').scrollTo({top: 0, behavior: 'smooth'});
+    bootstrap.Modal.getInstance(document.getElementById('fullscreenSearchModal')).hide();
+  } else if (type === 'category') {
+    document.getElementById(id).scrollIntoView({behavior: 'smooth'});
+    bootstrap.Modal.getInstance(document.getElementById('fullscreenSearchModal')).hide();
+  } else {
+    window.open(url, '_blank');
+  }
+}
+
+// 键盘导航变量
+let currentSearchIndex = -1;
+
+// 重置搜索选择
+function resetSearchSelection() {
+  currentSearchIndex = -1;
+  document.querySelectorAll('.search-result-item').forEach(item => {
+    item.classList.remove('search-result-selected');
+  });
+}
+
+// 更新搜索选择
+function updateSearchSelection() {
+  const items = document.querySelectorAll('.search-result-item');
+  items.forEach((item, index) => {
+    if (index === currentSearchIndex) {
+      item.classList.add('search-result-selected');
+      // 滚动到可见区域
+      item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } else {
+      item.classList.remove('search-result-selected');
+    }
+  });
+}
+
+// 执行当前选中的搜索结果
+function executeCurrentSelection() {
+  const selectedItem = document.querySelector('.search-result-item.search-result-selected');
+  if (selectedItem) {
+    handleSearchResultClick(selectedItem);
+  }
 }
 
 function toggleSidebarForDesktop() {
@@ -495,6 +548,27 @@ function initFullscreenSearch() {
     // ESC 键关闭全屏搜索
     if (e.key === 'Escape' && document.getElementById('fullscreenSearchModal').classList.contains('show')) {
       modal.hide();
+    }
+  });
+  
+  // 搜索框键盘导航
+  fullscreenSearch.addEventListener('keydown', (e) => {
+    const items = document.querySelectorAll('.search-result-item');
+    const maxIndex = items.length - 1;
+    
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      currentSearchIndex = Math.min(currentSearchIndex + 1, maxIndex);
+      updateSearchSelection();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      currentSearchIndex = Math.max(currentSearchIndex - 1, -1);
+      updateSearchSelection();
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (currentSearchIndex >= 0) {
+        executeCurrentSelection();
+      }
     }
   });
   
