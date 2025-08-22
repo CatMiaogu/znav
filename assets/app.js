@@ -587,11 +587,54 @@ function initFullscreenSearch() {
   });
 }
 
+// 回到顶部功能
+function initBackToTop() {
+  const backToTopBtn = document.getElementById('backToTop');
+  const contentArea = document.querySelector('.content-area');
+  
+  if (!backToTopBtn || !contentArea) {
+    return;
+  }
+  
+  // 监听内容区域的滚动事件
+  contentArea.addEventListener('scroll', () => {
+    const scrollPos = contentArea.scrollTop;
+    
+    // 更新滚动位置显示
+    const scrollPositionEl = document.getElementById('scrollPosition');
+    if (scrollPositionEl) {
+      scrollPositionEl.textContent = scrollPos;
+    }
+    
+    if (scrollPos > 100) {
+      backToTopBtn.classList.add('show');
+    } else {
+      backToTopBtn.classList.remove('show');
+    }
+  });
+  
+  // 点击回到顶部
+  backToTopBtn.addEventListener('click', () => {
+    contentArea.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+  
+  // 页面加载时检查是否需要显示按钮
+  setTimeout(() => {
+    if (contentArea.scrollTop > 100) {
+      backToTopBtn.classList.add('show');
+    }
+  }, 100);
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   loadMenu();
   initThemeToggle();
   initFullscreenSearch();
   initToggleAllMenus();
+  initBackToTop();
 });
 
 

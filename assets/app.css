@@ -823,6 +823,51 @@ html { scroll-behavior: smooth; }
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
 }
 
+/* 回到顶部按钮 */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  display: block !important; /* 确保按钮始终存在 */
+}
+
+.back-to-top:hover {
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  color: white;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* 暗色模式回到顶部按钮 */
+[data-theme="dark"] .back-to-top {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.4);
+}
+
+[data-theme="dark"] .back-to-top:hover {
+  background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.5);
+}
+
 [data-theme="dark"] .submenu-flyout .nav-link:hover {
   background: #4b5563;
   color: #ffffff;
