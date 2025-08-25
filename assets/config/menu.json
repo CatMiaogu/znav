@@ -37,7 +37,7 @@
         {"id":"community-wiki","name":"厂商Wiki","links":[
           {"name":"拓竹科技Wiki","url":"https://wiki.bambulab.com/zh/home","desc":"Bambu Lab官方Wiki，详细使用教程"},
           {"name":"Anycubic Wiki","url":"https://wiki.anycubic.com/zh/home","desc":"Anycubic官方Wiki，产品使用指南"},
-          {"name":"ELEGOO Wiki","url":"https://wiki.elegoo.com/zh/home","desc":"ELEGOO官方Wiki，技术支持文档"},
+          {"name":"ELEGOO Wiki","url":"https://wiki.elegoo.com.cn","desc":"ELEGOO官方Wiki，技术支持文档"},
           {"name":"3D打印基地站","url":"https://www.3dpbase.com/wiki/","desc":"台湾3D打印知识库"}
         ]}
 
